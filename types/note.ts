@@ -10,7 +10,7 @@ export interface Note {
 export interface CreatedNote {
   title: string;
   content: string;
-  tag: string;
+  tag: NoteTag;
 }
 
 export type NoteTag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';

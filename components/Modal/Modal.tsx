@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import css from './Modal.module.css';
 
 interface ModalProps {
-  children: React.ReactNode;
   closeModal: () => void;
+  children: React.ReactNode;
 }
 
 export default function Modal({ children, closeModal }: ModalProps) {
