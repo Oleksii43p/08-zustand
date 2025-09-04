@@ -3,14 +3,13 @@ import { Metadata } from 'next';
 
 import css from './CreateNote.module.css';
 
-
 export const metadata: Metadata = {
   title: 'New note',
   description: 'Create new note',
   openGraph: {
     title: 'New note',
     description: 'Create new note',
-    url: 'https://08-zustand-tau-eight.vercel.app/notes/action/create',
+    url: 'https://08-zustand-iota-sooty.vercel.app/notes/action/create',
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
@@ -27,7 +26,7 @@ const page = () => {
     <main className={css.main}>
       <div className={css.container}>
         <h1 className={css.title}>Create note</h1>
-        <NoteForm/>
+        <NoteForm />
       </div>
     </main>
   );
