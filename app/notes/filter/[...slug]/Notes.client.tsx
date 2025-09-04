@@ -11,20 +11,19 @@ import { fetchNotes, NoteResponse } from '@/lib/api';
 
 import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
 import SearchBox from '@/components/SearchBox/SearchBox';
+
+import Link from 'next/link';
 
 import css from './NotesClient.module.css';
 
 interface NotesClientProps {
-    tag: string | undefined;
+  tag: string | undefined;
 }
 
 export const NotesClient = ({ tag }: NotesClientProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
 
   const debouncedSearch = useDebouncedCallback((value: string) => {
     setSearchTerm(value);
@@ -49,9 +48,6 @@ export const NotesClient = ({ tag }: NotesClientProps) => {
     toast.error('Notes not found.');
   }
 
-  const showModal = () => setModalOpen(true);
-  const hideModal = () => setModalOpen(false);
-
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -65,9 +61,9 @@ export const NotesClient = ({ tag }: NotesClientProps) => {
           />
         )}
 
-        <button onClick={showModal} className={css.button}>
+        <Link href={'/notes/action/create'} className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
 
       {isLoading && (
@@ -82,12 +78,6 @@ export const NotesClient = ({ tag }: NotesClientProps) => {
         >
           <PacmanLoader speedMultiplier={2} color="#c4c700ff" size={30} />
         </div>
-      )}
-
-      {modalOpen && (
-        <Modal closeModal={hideModal}>
-          <NoteForm closeModal={hideModal} />
-        </Modal>
       )}
 
       {data && data.notes.length > 0 && <NoteList data={data.notes} />}
